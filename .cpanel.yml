@@ -6,3 +6,4 @@ deployment:
     - /bin/cp -Rn ./user/accounts ./user/data ${DEPLOYPATH}user/
     - /bin/mkdir -p ${DEPLOYPATH}cache ${DEPLOYPATH}logs ${DEPLOYPATH}tmp ${DEPLOYPATH}backup
     - /bin/rm -rf ${DEPLOYPATH}cache/*
+    - /bin/chmod 750 $DEPLOYPATH
