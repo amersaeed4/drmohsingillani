@@ -2,8 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/drmohsin/public_html/
-    - /usr/bin/rsync -a --exclude='.git' --exclude='.cpanel.yml' --exclude='.env' --exclude='/cache/' --exclude='/logs/' --exclude='/tmp/' --exclude='/backup/' --exclude='/user/accounts/' --exclude='/user/data/' ./ $DEPLOYPATH
-    - /usr/bin/rsync -a --ignore-existing ./user/accounts/ ${DEPLOYPATH}user/accounts/
-    - /usr/bin/rsync -a --ignore-existing ./user/data/ ${DEPLOYPATH}user/data/
+    - /bin/tar -cf - --exclude=./.git --exclude=./.cpanel.yml --exclude=./.env --exclude=./cache --exclude=./logs --exclude=./tmp --exclude=./backup --exclude=./user/accounts --exclude=./user/data . | /bin/tar -xf - -C $DEPLOYPATH
+    - /bin/cp -Rn ./user/accounts ./user/data ${DEPLOYPATH}user/
     - /bin/mkdir -p ${DEPLOYPATH}cache ${DEPLOYPATH}logs ${DEPLOYPATH}tmp ${DEPLOYPATH}backup
     - /bin/rm -rf ${DEPLOYPATH}cache/*
