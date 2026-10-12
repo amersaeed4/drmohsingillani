@@ -1,0 +1,52 @@
+{#
+  SEO head tags. Every value can be overridden per page in Admin → page → "SEO" tab.
+  Site-wide defaults live in Admin → Themes → Dr Mohsin Gillani → Default SEO.
+#}
+{% set t = config.theme %}
+{% set hdr = page.header %}
+{% set is_home = page.home %}
+{% set page_title = hdr.seo.title ?: (is_home ? t.seo.home_title : (page.title ~ ' | ' ~ t.seo.title_suffix)) %}
+
+{% set auto_desc = (hdr.lead ?: (page.content|plain_text))|trim_words(158) %}
+{% set meta_desc = hdr.metadata.description ?: (auto_desc ?: t.seo.default_description) %}
+{% if page.template == 'error' %}{% set meta_desc = t.seo.default_description %}{% endif %}
+
+{% set canonical = hdr.seo.canonical ?: page.url(true, true) %}
+{% set noindex = t.seo.noindex_site or hdr.seo.noindex or page.template == 'error' %}
+{% set robots = noindex ? 'noindex, nofollow' : (hdr.metadata.robots ?: 'index, follow, max-image-preview:large, max-snippet:-1') %}
+
+{# Share image: the page's own SEO image, otherwise the site-wide default #}
+{% set img_name = hdr.seo.image ?: null %}
+{% set img_obj = img_name ? page.media[img_name] : null %}
+{% set theme_img = t.seo.default_image ? (t.seo.default_image|first) : null %}
+{% if img_obj %}
+    {% set og_image = url(img_obj.url, true) %}
+{% elseif theme_img %}
+    {% set og_image = url('theme://images/uploads/' ~ theme_img.name, true) %}
+{% else %}
+    {% set og_image = url('theme://images/og-default.jpg', true) %}
+{% endif %}
+
+<title>{{ page_title|e('html') }}</title>
+<meta name="description" content="{{ meta_desc|e }}">
+{% if hdr.metadata.keywords %}<meta name="keywords" content="{{ hdr.metadata.keywords|e }}">{% endif %}
+<meta name="robots" content="{{ robots }}">
+<meta name="author" content="{{ config.site.author.name|e }}">
+<meta name="theme-color" content="{{ t.brand.navy }}">
+<link rel="canonical" href="{{ canonical }}">
+
+<meta property="og:type" content="{{ is_home ? 'website' : 'article' }}">
+<meta property="og:site_name" content="{{ config.site.title|e }}">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="{{ page_title|e }}">
+<meta property="og:description" content="{{ meta_desc|e }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ og_image }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page_title|e }}">
+<meta name="twitter:description" content="{{ meta_desc|e }}">
+<meta name="twitter:image" content="{{ og_image }}">
+{% if t.seo.twitter %}<meta name="twitter:site" content="{{ t.seo.twitter|e }}">{% endif %}
+{% if not noindex %}<link rel="sitemap" type="application/xml" title="Sitemap" href="{{ url('/sitemap.xml', true) }}">{% endif %}
+
+{% include 'partials/schema.html.twig' %}

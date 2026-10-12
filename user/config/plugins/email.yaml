@@ -1,0 +1,8 @@
+enabled: true
+from: drmohsingillani@gmail.com
+from_name: 'Dr Mohsin Gillani Website'
+to: drmohsingillani@gmail.com
+to_name: 'Dr Mohsin Gillani'
+mailer:
+  engine: sendmail
+content_type: text/html

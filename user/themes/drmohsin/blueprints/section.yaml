@@ -1,0 +1,32 @@
+title: Section Landing Page
+extends@: default
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          fields:
+            header.lead:
+              type: textarea
+              rows: 2
+              label: Intro text
+              help: Shown in the banner. Child pages are listed automatically as cards below the content.
+              style: vertical
+            header.card_image:
+              type: filepicker
+              label: Card image
+              folder: '@self'
+              preview_images: true
+              accept:
+              - .png
+              - .jpg
+              - .jpeg
+              - .webp
+        seo:
+          type: tab
+          title: SEO
+          import@:
+            type: partials/seo
+            context: blueprints://pages

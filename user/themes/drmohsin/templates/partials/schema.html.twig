@@ -1,0 +1,71 @@
+{# JSON-LD structured data: clinic/physician, website, page and breadcrumbs. #}
+{% set t = config.theme %}
+{% set hdr = page.header %}
+{% set site_url = url('/', true)|trim('/', 'right') %}
+{% set org_id = site_url ~ '/#organization' %}
+{% set logo_file = t.custom_logo ? (t.custom_logo|first) : null %}
+{% set logo_url = logo_file ? url('theme://images/uploads/' ~ logo_file.name, true) : url('theme://images/logo.png', true) %}
+
+{% set same_as = [] %}
+{% for k, v in t.social %}{% if v %}{% set same_as = same_as|merge([v]) %}{% endif %}{% endfor %}
+
+{% set org = {
+    '@type': t.seo.schema_type ?: 'Physician',
+    '@id': org_id,
+    'name': t.clinic.name,
+    'url': site_url ~ '/',
+    'logo': logo_url,
+    'image': logo_url,
+    'telephone': t.clinic.phone_intl,
+    'email': t.clinic.email,
+    'description': t.seo.default_description,
+    'medicalSpecialty': ['Surgical', 'Endocrine', 'Gastroenterologic'],
+    'priceRange': '$$',
+    'openingHours': t.clinic.hours_schema,
+    'address': {
+        '@type': 'PostalAddress',
+        'streetAddress': t.clinic.address,
+        'addressLocality': t.clinic.locality,
+        'addressRegion': t.clinic.region,
+        'addressCountry': t.clinic.country
+    }
+} %}
+{% if same_as|length %}{% set org = org|merge({'sameAs': same_as}) %}{% endif %}
+
+{% set page_type = (hdr.seo.schema_type and hdr.seo.schema_type != 'auto') ? hdr.seo.schema_type : (page.template == 'contact' ? 'ContactPage' : (page.template == 'team' ? 'AboutPage' : 'WebPage')) %}
+{% set webpage = {
+    '@type': page_type,
+    '@id': page.url(true, true) ~ '#webpage',
+    'url': page.url(true, true),
+    'name': hdr.seo.title ?: page.title,
+    'isPartOf': {'@id': site_url ~ '/#website'},
+    'about': {'@id': org_id},
+    'inLanguage': 'en',
+    'datePublished': page.date|date('c'),
+    'dateModified': page.modified|date('c')
+} %}
+
+{# Breadcrumbs from the page tree #}
+{% set chain = [] %}
+{% set cur = page %}
+{% for i in 1..6 %}
+    {% if cur and cur.route and cur.route != '/' and not cur.root %}
+        {% set chain = [cur]|merge(chain) %}
+        {% set cur = cur.parent %}
+    {% endif %}
+{% endfor %}
+{% set items = [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': site_url ~ '/'}] %}
+{% for c in chain %}
+    {% if c.home == false %}
+    {% set items = items|merge([{'@type': 'ListItem', 'position': items|length + 1, 'name': c.title, 'item': c.url(true, true)}]) %}
+    {% endif %}
+{% endfor %}
+
+{% set graph = [
+    org,
+    {'@type': 'WebSite', '@id': site_url ~ '/#website', 'url': site_url ~ '/', 'name': config.site.title, 'publisher': {'@id': org_id}, 'inLanguage': 'en'},
+    webpage
+] %}
+{% if not page.home %}{% set graph = graph|merge([{'@type': 'BreadcrumbList', 'itemListElement': items}]) %}{% endif %}
+
+<script type="application/ld+json">{{ {'@context': 'https://schema.org', '@graph': graph}|json_encode(constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}</script>

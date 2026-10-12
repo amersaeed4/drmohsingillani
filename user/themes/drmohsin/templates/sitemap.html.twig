@@ -1,0 +1,15 @@
+{% extends 'partials/base.html.twig' %}
+{% block content %}
+{% include 'partials/page-hero.html.twig' %}
+<section class="content-section">
+    <div class="container">
+        <div class="prose prose-wide">
+            <ul>
+            {% for p in page.collection({'items': {'@root.descendants': true}}) %}{% if p.published and p.routable and p.template != 'sitemap' and p.template != 'error' %}
+                <li><a href="{{ p.url }}">{{ p.title }}</a></li>
+            {% endif %}{% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}

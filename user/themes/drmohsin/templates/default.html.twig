@@ -1,0 +1,25 @@
+{% extends 'partials/base.html.twig' %}
+{% block content %}
+{% set hdr = page.header %}
+{% include 'partials/page-hero.html.twig' %}
+
+{% set show_side = hdr.show_sidenav is defined ? hdr.show_sidenav : true %}
+{% set in_section = page.parent and not page.parent.root and page.parent.route != '/' %}
+{% set side = show_side and (in_section or page.children.visible|length) %}
+
+<section class="content-section">
+    <div class="container content-layout{{ side ? ' has-side' : '' }}">
+        <article class="prose">
+            {{ page.content|raw }}
+            {% if hdr.show_children %}
+                {% include 'partials/child-cards.html.twig' %}
+            {% endif %}
+        </article>
+        {% if side %}{% include 'partials/sidenav.html.twig' %}{% endif %}
+    </div>
+</section>
+
+{% if (hdr.show_facility is defined ? hdr.show_facility : true) and config.theme.facility.enabled %}
+    {% include 'partials/facility.html.twig' %}
+{% endif %}
+{% endblock %}

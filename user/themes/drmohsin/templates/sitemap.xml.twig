@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% set all = page.collection({'items': {'@root.descendants': true}}) %}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% for p in all %}
+{% if p.published and p.routable and p.template != 'sitemap' and p.template != 'error' and not p.header.seo.noindex and not p.header.sitemap.ignore %}
+    <url>
+        <loc>{{ p.url(true, true) }}</loc>
+        <lastmod>{{ p.modified|date('Y-m-d') }}</lastmod>
+        <changefreq>{{ p.header.sitemap.changefreq ?: (p.home ? 'weekly' : 'monthly') }}</changefreq>
+        <priority>{{ (p.header.sitemap.priority and p.header.sitemap.priority != 'auto') ? p.header.sitemap.priority : (p.home ? '1.0' : '0.7') }}</priority>
+    </url>
+{% endif %}
+{% endfor %}
+</urlset>

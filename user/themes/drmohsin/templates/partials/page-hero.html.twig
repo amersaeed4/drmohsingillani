@@ -1,0 +1,17 @@
+{# Page banner: breadcrumb, title and optional lead paragraph. #}
+{% set hdr = page.header %}
+<section class="page-hero">
+    <div class="container ph-inner">
+        <div class="ph-text">
+            {% include 'partials/breadcrumbs.html.twig' %}
+            <h1>{{ hdr.title_display ?: page.title }}</h1>
+            {% if hdr.lead %}<p class="lead">{{ hdr.lead }}</p>{% endif %}
+        </div>
+        {% set hero = hdr.hero_image ? page.media[hdr.hero_image] : null %}
+        {% if hero %}
+        <div class="ph-media">
+            <img src="{{ hero.url }}" alt="{{ hdr.hero_alt ?: page.title }}" width="{{ hero.width }}" height="{{ hero.height }}" fetchpriority="high">
+        </div>
+        {% endif %}
+    </div>
+</section>

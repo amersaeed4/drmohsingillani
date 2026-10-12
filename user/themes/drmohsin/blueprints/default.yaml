@@ -1,0 +1,82 @@
+title: Content Page
+extends@: default
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          fields:
+            header.lead:
+              type: textarea
+              rows: 2
+              label: Intro text
+              help: A short sentence shown in the banner under the page title. Also used as the automatic meta description.
+              style: vertical
+            header.hero_image:
+              type: filepicker
+              label: Banner image (optional)
+              help: Upload the image in "Page Media" below, then pick it here. Shown beside the title.
+              folder: '@self'
+              preview_images: true
+              accept:
+              - .png
+              - .jpg
+              - .jpeg
+              - .webp
+              - .svg
+            header.hero_alt:
+              type: text
+              label: Banner image description (alt text)
+        layout:
+          type: tab
+          title: Layout
+          fields:
+            header.show_children:
+              type: toggle
+              label: List sub-pages as cards under the content
+              highlight: 0
+              default: 0
+              options:
+                1: PLUGIN_ADMIN.YES
+                0: PLUGIN_ADMIN.NO
+              validate:
+                type: bool
+            header.show_sidenav:
+              type: toggle
+              label: Show the "in this section" side menu
+              highlight: 1
+              default: 1
+              options:
+                1: PLUGIN_ADMIN.YES
+                0: PLUGIN_ADMIN.NO
+              validate:
+                type: bool
+            header.show_facility:
+              type: toggle
+              label: Show the "Visit our facility" banner at the bottom
+              highlight: 1
+              default: 1
+              options:
+                1: PLUGIN_ADMIN.YES
+                0: PLUGIN_ADMIN.NO
+              validate:
+                type: bool
+            header.card_image:
+              type: filepicker
+              label: Card image
+              help: Used when this page appears as a card inside a parent page.
+              folder: '@self'
+              preview_images: true
+              accept:
+              - .png
+              - .jpg
+              - .jpeg
+              - .webp
+        seo:
+          type: tab
+          title: SEO
+          import@:
+            type: partials/seo
+            context: blueprints://pages

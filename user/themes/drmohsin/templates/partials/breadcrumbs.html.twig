@@ -1,0 +1,20 @@
+{% set chain = [] %}
+{% set cur = page %}
+{% for i in 1..6 %}
+    {% if cur and cur.route and cur.route != '/' and not cur.root %}
+        {% set chain = [cur]|merge(chain) %}
+        {% set cur = cur.parent %}
+    {% endif %}
+{% endfor %}
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+    <ol>
+        <li><a href="{{ base_url == '' ? '/' : base_url }}">Home</a></li>
+        {% for c in chain %}
+            {% if loop.last %}
+            <li aria-current="page">{{ c.title }}</li>
+            {% else %}
+            <li><a href="{{ c.url }}">{{ c.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ol>
+</nav>

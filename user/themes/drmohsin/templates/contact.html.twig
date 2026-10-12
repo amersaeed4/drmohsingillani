@@ -1,0 +1,25 @@
+{% extends 'partials/base.html.twig' %}
+{% import 'partials/macros.html.twig' as m %}
+{% block content %}
+{% set t = config.theme %}
+{% include 'partials/page-hero.html.twig' %}
+<section class="content-section">
+    <div class="container contact-layout">
+        <div class="contact-info">
+            <h2>{{ t.clinic.name }}</h2>
+            <ul class="contact-list">
+                <li>{{ m.icon('pin', 22) }}<div><strong>Visit</strong><span>{{ t.clinic.address }}</span>{% if t.clinic.map_url %}<a href="{{ t.clinic.map_url }}" target="_blank" rel="noopener noreferrer">Get directions</a>{% endif %}</div></li>
+                <li>{{ m.icon('phone', 22) }}<div><strong>Call us</strong><a href="tel:{{ t.clinic.phone_intl }}">{{ t.clinic.phone }}</a></div></li>
+                <li>{{ m.icon('mail', 22) }}<div><strong>Or write</strong><a href="mailto:{{ t.clinic.email }}">{{ t.clinic.email }}</a></div></li>
+                <li>{{ m.icon('clock', 22) }}<div><strong>Opening hours</strong><span>{{ t.clinic.hours }}</span></div></li>
+            </ul>
+            {% if page.content|trim %}<div class="prose">{{ page.content|raw }}</div>{% endif %}
+        </div>
+
+        <div class="contact-form" id="appointment">
+            <h2>{{ page.header.form_title ?: 'Get in touch' }}</h2>
+            {% include 'forms/form.html.twig' %}
+        </div>
+    </div>
+</section>
+{% endblock %}

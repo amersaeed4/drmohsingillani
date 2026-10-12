@@ -1,0 +1,12 @@
+{% extends 'partials/base.html.twig' %}
+{# A landing page for a group of pages (e.g. Obesity, Diabetes): intro text plus cards for each child page. #}
+{% block content %}
+{% include 'partials/page-hero.html.twig' %}
+<section class="content-section">
+    <div class="container">
+        {% if page.content|trim %}<div class="prose prose-wide">{{ page.content|raw }}</div>{% endif %}
+        {% include 'partials/child-cards.html.twig' %}
+    </div>
+</section>
+{% if config.theme.facility.enabled %}{% include 'partials/facility.html.twig' %}{% endif %}
+{% endblock %}

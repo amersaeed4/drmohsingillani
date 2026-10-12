@@ -1,0 +1,19 @@
+{# Card grid linking to this page's visible children. #}
+{% import 'partials/macros.html.twig' as m %}
+{% set kids = page.children.visible %}
+{% if kids|length %}
+<div class="card-grid">
+    {% for c in kids %}
+    {% set cimg = c.header.card_image ? c.media[c.header.card_image] : null %}
+    <a class="card" href="{{ c.url }}">
+        {% if cimg %}<span class="card-img"><img src="{{ cimg.url }}" alt="" loading="lazy" width="{{ cimg.width }}" height="{{ cimg.height }}"></span>{% endif %}
+        <span class="card-body">
+            <span class="card-title">{{ c.title }}</span>
+            {% set sum = c.header.lead ?: (c.header.metadata.description ?: null) %}
+            {% if sum %}<span class="card-text">{{ sum|trim_words(140) }}</span>{% endif %}
+            <span class="card-link">Read more {{ m.icon('arrow', 16) }}</span>
+        </span>
+    </a>
+    {% endfor %}
+</div>
+{% endif %}

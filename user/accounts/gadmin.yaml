@@ -1,0 +1,15 @@
+state: enabled
+email: mas@amersaeed.com
+fullname: 'Amer Saeed'
+title: Administrator
+access:
+  site:
+    login: true
+  api:
+    super: true
+hashed_password: $2y$12$8v5QyjxD9hXbyvxPILvyp.zL9SxP8RFwpggPyyf9hcPUvFHEAIkWG
+created: 1791794332
+modified: 1791794332
+avatar: {  }
+twofa_enabled: false
+twofa_secret: ''

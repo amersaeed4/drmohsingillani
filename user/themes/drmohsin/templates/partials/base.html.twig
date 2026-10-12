@@ -1,0 +1,50 @@
+{% import 'partials/macros.html.twig' as m %}
+{% set t = config.theme %}
+{% set logo_file = t.custom_logo ? (t.custom_logo|first) : null %}
+{% set fav_file = t.custom_favicon ? (t.custom_favicon|first) : null %}
+{% set logo_url = logo_file ? url('theme://images/uploads/' ~ logo_file.name) : url('theme://images/logo.png') %}
+{% set fav_url = fav_file ? url('theme://images/uploads/' ~ fav_file.name) : url('theme://images/favicon.png') %}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'partials/seo.html.twig' %}
+    <link rel="icon" href="{{ fav_url }}">
+    <link rel="apple-touch-icon" href="{{ fav_url }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+
+    <style>
+        :root {
+            --primary: {{ t.brand.primary }};
+            --navy: {{ t.brand.navy }};
+            --accent: {{ t.brand.accent }};
+        }
+    </style>
+    {% do assets.addCss('theme://css/theme.css', 100) %}
+    {{ assets.css()|raw }}
+    <script>document.documentElement.classList.remove('no-js');</script>
+</head>
+<body class="tpl-{{ page.template }}{{ page.home ? ' is-home' : '' }}">
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    {% include 'partials/header.html.twig' %}
+
+    <main id="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include 'partials/footer.html.twig' %}
+
+    <nav class="mobile-bar" aria-label="Quick actions">
+        <a href="tel:{{ t.clinic.phone_intl }}" class="mb-call">{{ m.icon('phone', 18) }} Call</a>
+        <a href="{{ url(t.header.cta_link) }}" class="mb-book">{{ m.icon('calendar', 18) }} Book</a>
+    </nav>
+
+    {% do assets.addJs('theme://js/site.js', {group: 'bottom', loading: 'defer'}) %}
+    {{ assets.js('bottom')|raw }}
+</body>
+</html>

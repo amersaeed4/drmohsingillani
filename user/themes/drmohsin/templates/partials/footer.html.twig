@@ -1,0 +1,45 @@
+{% import 'partials/macros.html.twig' as m %}
+{% set t = config.theme %}
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div class="f-col f-brand">
+            <p class="f-title">{{ t.clinic.name }}</p>
+            {% if t.footer.about %}<p class="f-about">{{ t.footer.about }}</p>{% endif %}
+            <ul class="f-contact">
+                <li>{{ m.icon('pin', 18) }}<span>{{ t.clinic.address }}</span></li>
+                <li>{{ m.icon('clock', 18) }}<span>Opening hours: {{ t.clinic.hours }}</span></li>
+            </ul>
+            {% set has_social = false %}
+            {% for k, v in t.social %}{% if v %}{% set has_social = true %}{% endif %}{% endfor %}
+            {% if has_social %}
+            <ul class="social" aria-label="Social media">
+                {% for k, v in t.social %}{% if v %}
+                <li><a href="{{ v }}" target="_blank" rel="noopener noreferrer" aria-label="{{ k|capitalize }}">{{ m.icon(k, 20) }}</a></li>
+                {% endif %}{% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <div class="f-col">
+            <p class="f-title">Contact me</p>
+            <a class="f-phone" href="tel:{{ t.clinic.phone_intl }}">{{ t.clinic.phone }}</a>
+            <a class="f-mail" href="mailto:{{ t.clinic.email }}">{{ t.clinic.email }}</a>
+            <a class="btn btn-light" href="{{ url('/contact') }}">Contact us</a>
+            {% if t.clinic.map_url %}<a class="f-map" href="{{ t.clinic.map_url }}" target="_blank" rel="noopener noreferrer">Get directions {{ m.icon('arrow', 16) }}</a>{% endif %}
+        </div>
+
+        <div class="f-col">
+            <p class="f-title">{{ t.footer.links_title }}</p>
+            <ul class="f-links">
+                {% for l in t.footer.links %}
+                <li><a href="{{ url(l.url) }}">{{ l.label }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container fb-inner">
+            <p>{{ t.footer.copyright|replace({'{year}': 'now'|date('Y')}) }}{% if t.footer.credit %} | {{ t.footer.credit }}{% endif %}</p>
+        </div>
+    </div>
+</footer>

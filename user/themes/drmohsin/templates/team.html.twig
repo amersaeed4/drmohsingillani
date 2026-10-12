@@ -1,0 +1,29 @@
+{% extends 'partials/base.html.twig' %}
+{% block content %}
+{% set hdr = page.header %}
+{% include 'partials/page-hero.html.twig' %}
+<section class="content-section">
+    <div class="container">
+        {% if page.content|trim %}<div class="prose prose-wide">{{ page.content|raw }}</div>{% endif %}
+        {% for group in hdr.groups %}
+        <div class="team-group">
+            {% if group.title %}<h2 class="team-group-title">{{ group.title }}</h2>{% endif %}
+            <ul class="team-grid">
+                {% for member in group.members %}
+                {% set photo = member.photo ? page.media[member.photo] : null %}
+                <li class="member">
+                    <span class="member-photo">
+                        {% if photo %}<img src="{{ photo.url }}" alt="{{ member.name|e }}" loading="lazy" width="{{ photo.width }}" height="{{ photo.height }}">
+                        {% else %}<span class="member-initials" aria-hidden="true">{{ member.name|replace({'Prof. ': '', 'Prof ': '', 'Dr. ': '', 'Dr ': ''})|slice(0,1) }}</span>{% endif %}
+                    </span>
+                    <span class="member-name">{{ member.name }}</span>
+                    <span class="member-role">{{ member.role }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% if config.theme.facility.enabled %}{% include 'partials/facility.html.twig' %}{% endif %}
+{% endblock %}

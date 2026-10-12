@@ -1,0 +1,37 @@
+{% import 'partials/macros.html.twig' as m %}
+{% set t = config.theme %}
+<header class="site-header" id="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="{{ base_url == '' ? '/' : base_url }}" aria-label="{{ config.site.title|e }} – home">
+            <img src="{{ logo_url }}" alt="{{ config.site.title|e }}" width="359" height="71">
+        </a>
+
+        <nav class="primary-nav" aria-label="Primary">
+            {{ m.nav(pages.children.visible) }}
+        </nav>
+
+        <div class="header-actions">
+            <a class="header-phone" href="tel:{{ t.clinic.phone_intl }}">
+                <span class="hp-icon">{{ m.icon('phone', 18) }}</span>
+                <span class="hp-text"><small>Call us</small><strong>{{ t.clinic.phone }}</strong></span>
+            </a>
+            <a class="btn btn-primary header-cta" href="{{ url(t.header.cta_link) }}">{{ t.header.cta_label }}</a>
+            <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+                <span class="nt-open">{{ m.icon('menu', 26) }}</span>
+                <span class="nt-close">{{ m.icon('close', 26) }}</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+        <div class="container">
+            <nav aria-label="Mobile">
+                {{ m.mobile_nav(pages.children.visible) }}
+            </nav>
+            <div class="mm-actions">
+                <a class="btn btn-primary btn-block" href="{{ url(t.header.cta_link) }}">{{ t.header.cta_label }}</a>
+                <a class="btn btn-outline btn-block" href="tel:{{ t.clinic.phone_intl }}">{{ m.icon('phone', 18) }} {{ t.clinic.phone }}</a>
+            </div>
+        </div>
+    </div>
+</header>

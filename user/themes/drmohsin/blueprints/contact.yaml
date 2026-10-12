@@ -1,0 +1,25 @@
+title: Contact Page
+extends@: default
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          fields:
+            header.lead:
+              type: textarea
+              rows: 2
+              label: Intro text
+              style: vertical
+            header.form_title:
+              type: text
+              label: Form heading
+              default: Get in touch
+        seo:
+          type: tab
+          title: SEO
+          import@:
+            type: partials/seo
+            context: blueprints://pages

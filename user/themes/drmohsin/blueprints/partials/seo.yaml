@@ -1,0 +1,68 @@
+form:
+  fields:
+    seo_intro:
+      type: spacer
+      text: Controls how this page appears in Google and when shared on social media. Leave a field empty to use a sensible automatic value.
+      markdown: false
+    header.seo.title:
+      type: text
+      label: SEO title
+      help: The title shown in Google results and the browser tab. Aim for 50 to 60 characters. Empty = "Page title | site name".
+      placeholder: Defaults to the page title + site name
+    header.metadata.description:
+      type: textarea
+      rows: 3
+      label: Meta description
+      help: The snippet shown in Google results. Aim for 120 to 160 characters. Empty = the intro text of the page.
+    header.metadata.keywords:
+      type: text
+      label: Keywords (optional)
+      help: Comma separated. Search engines give this little weight.
+    header.seo.image:
+      type: filepicker
+      label: Social sharing image
+      help: Shown when the page is shared on Facebook, WhatsApp, LinkedIn, X. 1200 x 630 pixels works best. Empty = hero image or site default.
+      folder: '@self'
+      preview_images: true
+      accept:
+      - .png
+      - .jpg
+      - .jpeg
+      - .webp
+    header.seo.canonical:
+      type: text
+      label: Canonical URL (advanced)
+      help: Only fill this if the same content exists at another address.
+    header.seo.schema_type:
+      type: select
+      label: Page type (structured data)
+      default: auto
+      options:
+        auto: Automatic
+        WebPage: Web page
+        MedicalWebPage: Medical web page
+        AboutPage: About page
+        ContactPage: Contact page
+        CollectionPage: Collection / listing page
+    header.seo.noindex:
+      type: toggle
+      label: Hide this page from search engines
+      highlight: 0
+      default: 0
+      options:
+        1: Yes, noindex
+        0: No, allow indexing
+      validate:
+        type: bool
+    header.sitemap.priority:
+      type: select
+      label: Sitemap priority
+      default: auto
+      options:
+        auto: Automatic
+        '1.0': 1.0 (highest)
+        '0.9': '0.9'
+        '0.8': '0.8'
+        '0.7': '0.7'
+        '0.5': '0.5'
+        '0.3': 0.3 (lowest)

@@ -1,0 +1,155 @@
+title: Home Page
+extends@: default
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          fields:
+            home_note:
+              type: spacer
+              text: The sections of the home page are edited in the tabs "Hero", "Intro quote", "Services" and "Why choose me". The text editor below is optional extra content shown above the visit banner.
+            header.title:
+              type: text
+              label: Page title (internal)
+        hero:
+          type: tab
+          title: Hero
+          fields:
+            header.hero.eyebrow:
+              type: text
+              label: Small label above the heading
+            header.hero.title:
+              type: text
+              label: Main heading
+            header.hero.text:
+              type: textarea
+              rows: 3
+              label: Sub-heading
+            header.hero.button_label:
+              type: text
+              label: Main button label
+            header.hero.button_link:
+              type: text
+              label: Main button link
+            header.hero.button2_label:
+              type: text
+              label: Second button label (optional)
+            header.hero.button2_link:
+              type: text
+              label: Second button link
+            header.hero.image:
+              type: filepicker
+              label: Hero image
+              folder: '@self'
+              preview_images: true
+              accept:
+              - .png
+              - .jpg
+              - .jpeg
+              - .webp
+            header.hero.image_alt:
+              type: text
+              label: Hero image description (alt text)
+            header.hero.stats:
+              type: list
+              label: Highlights
+              style: vertical
+              fields:
+                .value:
+                  type: text
+                  label: Value (e.g. 25+)
+                .label:
+                  type: text
+                  label: Label
+        quote:
+          type: tab
+          title: Intro quote
+          fields:
+            header.quote.image:
+              type: filepicker
+              label: Image
+              folder: '@self'
+              preview_images: true
+              accept:
+              - .png
+              - .jpg
+              - .jpeg
+              - .webp
+            header.quote.text:
+              type: textarea
+              rows: 4
+              label: Quote
+            header.quote.name:
+              type: text
+              label: Name
+            header.quote.role:
+              type: text
+              label: Role (optional)
+        services:
+          type: tab
+          title: Services
+          fields:
+            header.services.eyebrow:
+              type: text
+              label: Small label
+            header.services.title:
+              type: text
+              label: Heading
+            header.services.text:
+              type: textarea
+              rows: 2
+              label: Intro text
+            header.services.items:
+              type: list
+              label: Service cards
+              style: vertical
+              fields:
+                .title:
+                  type: text
+                  label: Title
+                .text:
+                  type: textarea
+                  rows: 3
+                  label: Description
+                .image:
+                  type: filepicker
+                  label: Image
+                  folder: '@self'
+                  preview_images: true
+                  accept:
+                  - .png
+                  - .jpg
+                  - .jpeg
+                  - .webp
+                .link:
+                  type: text
+                  label: Link (page route
+                  e.g. /alcos): null
+                .link_label:
+                  type: text
+                  label: Link label
+        why:
+          type: tab
+          title: Why choose me
+          fields:
+            header.why.title:
+              type: text
+              label: Heading
+            header.why.items:
+              type: list
+              label: Points
+              style: vertical
+              fields:
+                .text:
+                  type: textarea
+                  rows: 2
+                  label: Text
+        seo:
+          type: tab
+          title: SEO
+          import@:
+            type: partials/seo
+            context: blueprints://pages

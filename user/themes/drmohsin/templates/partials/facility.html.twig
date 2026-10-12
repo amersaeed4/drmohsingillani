@@ -1,0 +1,23 @@
+{% import 'partials/macros.html.twig' as m %}
+{% set t = config.theme %}
+{% set fimg = t.facility.image ? (t.facility.image|first) : null %}
+{% set fimg_url = fimg ? url('theme://images/uploads/' ~ fimg.name) : url('theme://images/clinic.jpg') %}
+<section class="facility">
+    <div class="container facility-inner">
+        <div class="facility-media">
+            <img src="{{ fimg_url }}" alt="Dr Mohsin Gillani at the clinic" loading="lazy" width="780" height="886">
+        </div>
+        <div class="facility-body">
+            <span class="eyebrow">Our clinic</span>
+            <h2>{{ t.facility.heading }}</h2>
+            {% if t.facility.show_address %}
+            <p class="facility-address">{{ m.icon('pin', 20) }} <span>{{ t.clinic.address }}</span></p>
+            {% endif %}
+            <p class="facility-hours">{{ m.icon('clock', 20) }} <span>{{ t.clinic.hours }}</span></p>
+            <div class="btn-row">
+                <a class="btn btn-primary" href="{{ url(t.facility.button_link) }}">{{ t.facility.button_label }}</a>
+                {% if t.clinic.map_url %}<a class="btn btn-outline" href="{{ t.clinic.map_url }}" target="_blank" rel="noopener noreferrer">Get directions</a>{% endif %}
+            </div>
+        </div>
+    </div>
+</section>

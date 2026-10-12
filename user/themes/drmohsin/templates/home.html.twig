@@ -1,0 +1,99 @@
+{% extends 'partials/base.html.twig' %}
+{% import 'partials/macros.html.twig' as m %}
+{% block content %}
+{% set hdr = page.header %}
+{% set hero = hdr.hero %}
+
+{# HERO #}
+<section class="hero">
+    <div class="container hero-inner">
+        <div class="hero-text">
+            {% if hero.eyebrow %}<span class="eyebrow">{{ hero.eyebrow }}</span>{% endif %}
+            <h1>{{ hero.title }}</h1>
+            {% if hero.text %}<p class="lead">{{ hero.text }}</p>{% endif %}
+            <div class="btn-row">
+                {% if hero.button_label %}<a class="btn btn-primary btn-lg" href="{{ url(hero.button_link ?: '/contact') }}">{{ hero.button_label }}</a>{% endif %}
+                {% if hero.button2_label %}<a class="btn btn-outline btn-lg" href="{{ url(hero.button2_link ?: '/about') }}">{{ hero.button2_label }}</a>{% endif %}
+            </div>
+            {% if hero.stats|length %}
+            <ul class="hero-stats">
+                {% for s in hero.stats %}<li><strong>{{ s.value }}</strong><span>{{ s.label }}</span></li>{% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% set himg = hero.image ? page.media[hero.image] : null %}
+        {% if himg %}
+        <div class="hero-media">
+            <img src="{{ himg.url }}" alt="{{ hero.image_alt ?: 'Prof. Doctor Mohsin Gillani' }}" width="{{ himg.width }}" height="{{ himg.height }}" fetchpriority="high">
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{# INTRO QUOTE #}
+{% set q = hdr.quote %}
+{% if q.text %}
+<section class="quote-section">
+    <div class="container quote-inner">
+        {% set qimg = q.image ? page.media[q.image] : null %}
+        {% if qimg %}<div class="quote-media"><img src="{{ qimg.url }}" alt="{{ q.name|e }}" loading="lazy" width="{{ qimg.width }}" height="{{ qimg.height }}"></div>{% endif %}
+        <figure class="quote-body">
+            <blockquote>{{ q.text }}</blockquote>
+            {% if q.name %}<figcaption>{{ q.name }}{% if q.role %}<span>{{ q.role }}</span>{% endif %}</figcaption>{% endif %}
+        </figure>
+    </div>
+</section>
+{% endif %}
+
+{# SERVICES #}
+{% set sv = hdr.services %}
+{% if sv.items|length %}
+<section class="services-section">
+    <div class="container">
+        <div class="section-head">
+            {% if sv.eyebrow %}<span class="eyebrow">{{ sv.eyebrow }}</span>{% endif %}
+            <h2>{{ sv.title }}</h2>
+            {% if sv.text %}<p>{{ sv.text }}</p>{% endif %}
+        </div>
+        <div class="card-grid card-grid-3">
+            {% for item in sv.items %}
+            {% set simg = item.image ? page.media[item.image] : null %}
+            <a class="card" href="{{ url(item.link) }}">
+                {% if simg %}<span class="card-img"><img src="{{ simg.url }}" alt="{{ item.title|e }}" loading="lazy" width="{{ simg.width }}" height="{{ simg.height }}"></span>{% endif %}
+                <span class="card-body">
+                    <span class="card-title">{{ item.title }}</span>
+                    <span class="card-text">{{ item.text }}</span>
+                    <span class="card-link">{{ item.link_label ?: 'See more' }} {{ m.icon('arrow', 16) }}</span>
+                </span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{# WHY CHOOSE #}
+{% set why = hdr.why %}
+{% if why.items|length %}
+<section class="why-section">
+    <div class="container">
+        <div class="section-head section-head-light">
+            <h2>{{ why.title }}</h2>
+        </div>
+        <ul class="why-grid">
+            {% for w in why.items %}
+            <li>{{ m.icon('check', 22) }}<span>{{ w.text }}</span></li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endif %}
+
+{% if page.content|trim %}
+<section class="content-section">
+    <div class="container"><div class="prose prose-wide">{{ page.content|raw }}</div></div>
+</section>
+{% endif %}
+
+{% if config.theme.facility.enabled %}{% include 'partials/facility.html.twig' %}{% endif %}
+{% endblock %}
