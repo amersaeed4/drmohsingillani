@@ -1,0 +1,8 @@
+{# Live-search drop-down opened from the magnifier icon in the header #}
+<div class="search-panel" id="search-panel" data-endpoint="{{ url('/search.json') }}" hidden>
+    <div class="container">
+        {% include 'partials/search-form.html.twig' with {id: 'sp', large: true} %}
+        <div class="sp-results" id="sp-results" aria-live="polite"></div>
+        <p class="sp-hint">Press <kbd>Esc</kbd> to close</p>
+    </div>
+</div>

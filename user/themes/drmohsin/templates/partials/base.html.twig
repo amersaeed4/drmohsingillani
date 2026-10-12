@@ -24,7 +24,7 @@
             --accent: {{ t.brand.accent }};
         }
     </style>
-    {% do assets.addCss('theme://css/theme.css', 100) %}
+    {% do assets.addCss('theme://css/theme.css?v=' ~ asset_version('css/theme.css'), 100) %}
     {{ assets.css()|raw }}
     <script>document.documentElement.classList.remove('no-js');</script>
 </head>
@@ -44,7 +44,7 @@
         <a href="{{ url(t.header.cta_link) }}" class="mb-book">{{ m.icon('calendar', 18) }} Book</a>
     </nav>
 
-    {% do assets.addJs('theme://js/site.js', {group: 'bottom', loading: 'defer'}) %}
+    {% do assets.addJs('theme://js/site.js?v=' ~ asset_version('js/site.js'), {group: 'bottom', loading: 'defer'}) %}
     {{ assets.js('bottom')|raw }}
 </body>
 </html>

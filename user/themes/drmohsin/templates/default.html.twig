@@ -5,12 +5,13 @@
 
 {% set show_side = hdr.show_sidenav is defined ? hdr.show_sidenav : true %}
 {% set in_section = page.parent and not page.parent.root and page.parent.route != '/' %}
-{% set side = show_side and (in_section or page.children.visible|length) %}
+{% set side = show_side and (in_section or page.children.visible|length) and (page.header.show_sidenav is defined or true) %}
 
 <section class="content-section">
     <div class="container content-layout{{ side ? ' has-side' : '' }}">
-        <article class="prose">
-            {{ page.content|raw }}
+        {% set body = page.content|layout_sections %}
+        <article class="prose{{ '<!--has-asides-->' in body ? ' has-asides' : '' }}">
+            {{ body|replace({'<!--has-asides-->': ''})|raw }}
             {% if hdr.show_children %}
                 {% include 'partials/child-cards.html.twig' %}
             {% endif %}

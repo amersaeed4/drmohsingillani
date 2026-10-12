@@ -14,7 +14,7 @@
                 <li class="member">
                     <span class="member-photo">
                         {% if photo %}<img src="{{ photo.url }}" alt="{{ member.name|e }}" loading="lazy" width="{{ photo.width }}" height="{{ photo.height }}">
-                        {% else %}<span class="member-initials" aria-hidden="true">{{ member.name|replace({'Prof. ': '', 'Prof ': '', 'Dr. ': '', 'Dr ': ''})|slice(0,1) }}</span>{% endif %}
+                        {% else %}<svg class="member-avatar" viewBox="0 0 120 120" aria-hidden="true" focusable="false"><circle cx="60" cy="46" r="21" fill="currentColor"/><path d="M18 120c2-27 19-44 42-44s40 17 42 44z" fill="currentColor"/></svg>{% endif %}
                     </span>
                     <span class="member-name">{{ member.name }}</span>
                     <span class="member-role">{{ member.role }}</span>

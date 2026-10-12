@@ -5,6 +5,7 @@
         <p class="error-code">{{ page.header.http_response_code ?: 404 }}</p>
         <h1>This page could not be found</h1>
         <p class="lead">The page you are looking for may have moved or no longer exists. Try one of the links below.</p>
+        <div class="error-search">{% include 'partials/search-form.html.twig' with {id: 'er', large: true} %}</div>
         <div class="btn-row">
             <a class="btn btn-primary" href="{{ base_url == '' ? '/' : base_url }}">Back to home</a>
             <a class="btn btn-outline" href="{{ url('/contact') }}">Contact us</a>

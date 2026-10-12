@@ -5,6 +5,9 @@ routes:
 lead: Surgical, medical and non-surgical options to manage obesity, treat its complications and prevent it.
 metadata:
   description: 'Comprehensive obesity management in Lahore: surgical, medical and device-based options, treating complications and preventing obesity.'
+hero_image: placeholder-obesity.svg
+hero_alt: ''
+card_image: placeholder-obesity.svg
 ---
 
 - Surgical

@@ -40,6 +40,8 @@ The Advanced Laparoscopic Cancer & Obesity Surgery Centre is the only specialist
 
 - [Read More](/advanced-laparoscopic-surgery)
 
+![](placeholder-laparoscopy.svg)
+
 ### Cancer Surgery
 
 - Breast Cancer (MRM)
@@ -53,6 +55,8 @@ The Advanced Laparoscopic Cancer & Obesity Surgery Centre is the only specialist
 - Colorectal Cancer
 
 - Pancreatic and Periamullary Cancer
+
+![](placeholder-oncology.svg)
 
 ### Obesity Management Services
 
@@ -73,3 +77,5 @@ The Advanced Laparoscopic Cancer & Obesity Surgery Centre is the only specialist
 - Angiographic Guided Gastric Artery Embolization
 
 - Diet & Exercise
+
+![](placeholder-obesity.svg)

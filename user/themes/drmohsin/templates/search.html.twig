@@ -1,0 +1,52 @@
+{% extends 'partials/base.html.twig' %}
+{% import 'partials/macros.html.twig' as m %}
+{% block content %}
+{% set hdr = page.header %}
+{% set q = (uri.query('q') ?? '')|trim %}
+{% set results = q ? site_search(q) : [] %}
+
+<section class="page-hero search-hero">
+    <div class="container">
+        {% include 'partials/breadcrumbs.html.twig' %}
+        <h1>{{ q ? 'Search results' : page.title }}</h1>
+        {% if not q and hdr.lead %}<p class="lead">{{ hdr.lead }}</p>{% endif %}
+        {% include 'partials/search-form.html.twig' with {id: 'pg', value: q, large: true, autofocus: not q} %}
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="container search-results-wrap">
+        {% if q %}
+            <p class="sr-count" role="status">
+                {% if results|length %}{{ results|length }} {{ results|length == 1 ? 'result' : 'results' }} for <strong>“{{ q }}”</strong>
+                {% else %}No results for <strong>“{{ q }}”</strong>{% endif %}
+            </p>
+            {% if results|length %}
+            <ol class="sr-list">
+                {% for r in results %}
+                <li class="sr-item">
+                    {% if r.section %}<span class="sr-section">{{ r.section }}</span>{% endif %}
+                    <h2 class="sr-title"><a href="{{ r.url }}">{{ r.title_html|raw }}</a></h2>
+                    <p class="sr-snippet">{{ r.snippet|raw }}</p>
+                    <a class="sr-url" href="{{ r.url }}">{{ url(r.url, true)|replace({'https://': '', 'http://': ''}) }}</a>
+                </li>
+                {% endfor %}
+            </ol>
+            {% else %}
+            <div class="sr-empty">
+                <p>We couldn't find a page matching that. Try fewer or different words, for example <em>obesity</em>, <em>diabetes</em> or <em>gastric bypass</em>.</p>
+            </div>
+            {% endif %}
+        {% endif %}
+
+        {% if (not q or not results|length) and hdr.suggestions|length %}
+        <div class="sr-suggest">
+            <h2>{{ q ? 'You might be looking for' : 'Popular pages' }}</h2>
+            <ul class="chips">
+                {% for s in hdr.suggestions %}<li><a href="{{ url(s.url) }}">{{ s.label }} {{ m.icon('arrow', 16) }}</a></li>{% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

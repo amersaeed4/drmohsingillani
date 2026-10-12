@@ -6,6 +6,9 @@ lead: From diet and lifestyle modification to advanced procedures, find the trea
 metadata:
   description: 'Obesity treatment options in Lahore: diet and lifestyle modification, Plenity capsule, gastric balloon, laser liposuction, weight-loss injections and tablets.'
 show_children: true
+hero_image: placeholder-obesity.svg
+hero_alt: ''
+card_image: placeholder-band.svg
 ---
 
 - Diet modification

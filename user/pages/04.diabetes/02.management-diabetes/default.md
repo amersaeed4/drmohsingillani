@@ -5,6 +5,9 @@ routes:
 lead: Surgical, medical and non-surgical approaches to managing diabetes and preventing its complications.
 metadata:
   description: 'Diabetes management in Lahore: surgical, medical and non-surgical options, treating complications with therapies and devices, and preventing diabetes.'
+hero_image: placeholder-diabetes.svg
+hero_alt: ''
+card_image: placeholder-diabetes.svg
 ---
 
 - Surgical

@@ -6,6 +6,9 @@ lead: Advanced therapies for diabetic foot and neuropathic pain.
 metadata:
   description: 'Diabetes treatment in Lahore: diabetic foot care with hyperbaric oxygen, Dermapace and VAC dressing, plus neuropathic pain therapies such as Nerve Scrambler.'
 show_children: true
+hero_image: placeholder-diabetes.svg
+hero_alt: ''
+card_image: placeholder-general.svg
 ---
 
 ## Diabetic foot

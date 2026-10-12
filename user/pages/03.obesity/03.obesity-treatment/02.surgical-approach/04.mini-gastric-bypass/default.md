@@ -5,6 +5,9 @@ routes:
 lead: The Omega Loop (single anastomosis) gastric bypass combines restriction and malabsorption, and is fully reversible.
 metadata:
   description: 'Mini-gastric bypass (Omega Loop / single anastomosis) in Lahore: a reversible weight-loss operation combining restriction and malabsorption.'
+hero_image: placeholder-loop.svg
+hero_alt: ''
+card_image: placeholder-loop.svg
 ---
 
 Mini-Gastric Bypass or The Omega Loop Gastric Bypass or Single Anastomose Gastric Bypass is a combination of restriction and malabsorption and therefore has a two-way weight reducing effect. This variation of a classic gastric bypass (Roux-en-y) has a different site of connection between the small bowel and the stomach with a single anastomosis, and features a longer gastric pouch.

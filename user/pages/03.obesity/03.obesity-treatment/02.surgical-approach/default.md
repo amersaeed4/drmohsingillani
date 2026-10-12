@@ -6,6 +6,7 @@ lead: Many studies show that a surgical intervention offers the highest chance o
 metadata:
   description: Weight-loss (bariatric) surgery in Lahore offers the highest chance of lasting success for morbid obesity. Explore the types of surgery available.
 show_children: true
+card_image: placeholder-sleeve.svg
 ---
 
 Many studies show that a surgical intervention offers the highest chance of a successful approach for each patient with morbid obesity.
@@ -17,13 +18,3 @@ Many studies show that a surgical intervention offers the highest chance of a su
 - Increase quality of life
 
 ## Kinds of Surgeries
-
-### Restrictive
-
-### Roux-En-Y Gastric Bypass
-
-### Mini-Gastric Bypass
-
-### Gastric Banding
-
-**Endoscopic Ballooning**

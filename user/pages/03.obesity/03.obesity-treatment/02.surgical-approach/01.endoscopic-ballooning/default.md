@@ -5,6 +5,9 @@ routes:
 lead: A temporary, reversible gastric balloon placed through endoscopy, with no surgical incisions.
 metadata:
   description: 'Endoscopic gastric balloon in Lahore: a temporary, reversible, incision-free procedure that creates early fullness and helps weight loss. Learn how it works.'
+hero_image: placeholder-balloon.svg
+hero_alt: ''
+card_image: placeholder-balloon.svg
 ---
 
 A **gastric balloon** , also known as **stomach balloon** , is an inflatable [medical device](https://en.wikipedia.org/wiki/Medical_device) that is temporarily placed into the [stomach](https://en.wikipedia.org/wiki/Stomach) to [reduce weight](https://en.wikipedia.org/wiki/Weight_reduction). It is marketed to provide weight loss when diet and exercise have failed and surgery is not wanted or not recommended.

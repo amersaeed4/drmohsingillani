@@ -5,6 +5,9 @@ routes:
 lead: An adjustable silicone band placed around the upper stomach to limit how much you can eat.
 metadata:
   description: 'Adjustable gastric banding (lap band) in Lahore: how it works, expected loss of 50-60% of excess weight, and the possible risks and complications.'
+hero_image: placeholder-band.svg
+hero_alt: ''
+card_image: placeholder-band.svg
 ---
 
 The adjustable gastric band (sometimes known as lap banding) is a purely restrictive procedure. A silicone band is placed around the upper part of the stomach, creating a small pouch above the band, about the size of a golf ball and a large pouch below the band.

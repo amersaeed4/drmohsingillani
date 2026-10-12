@@ -1,0 +1,14 @@
+# Grav runtime files (regenerated automatically)
+/cache/*
+/logs/*
+/tmp/*
+/backup/*
+!/cache/.gitkeep
+!/logs/.gitkeep
+!/tmp/.gitkeep
+!/backup/.gitkeep
+/user/data/*-security-probe.*
+/user/data/enquiry-*.txt
+.DS_Store
+.env
+.env.local

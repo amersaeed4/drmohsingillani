@@ -5,6 +5,9 @@ routes:
 lead: Considered the gold standard of modern obesity surgery, combining restriction and malabsorption.
 metadata:
   description: 'Laparoscopic Roux-En-Y gastric bypass in Lahore, the gold standard of obesity surgery: how it works, what happens during surgery, and what to expect.'
+hero_image: placeholder-bypass.svg
+hero_alt: ''
+card_image: placeholder-bypass.svg
 ---
 
 ## Restrictive & Mal-absorptive

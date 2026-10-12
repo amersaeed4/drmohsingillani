@@ -1,0 +1,9 @@
+{# Reusable search form. Variables: value (prefilled query), id (unique id prefix), large (bool) #}
+{% import 'partials/macros.html.twig' as m %}
+{% set sid = id|default('sf') %}
+<form class="search-form{{ large ? ' search-form-lg' : '' }}" action="{{ url('/search') }}" method="get" role="search">
+    <label class="sr-only" for="{{ sid }}-q">Search the site</label>
+    <span class="sf-icon">{{ m.icon('search', 22) }}</span>
+    <input id="{{ sid }}-q" type="search" name="q" value="{{ value|default('')|e }}" placeholder="Search treatments, services, pages…" autocomplete="off" enterkeyhint="search"{% if autofocus %} autofocus{% endif %}>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>

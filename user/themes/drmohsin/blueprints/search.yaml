@@ -1,0 +1,22 @@
+title: Search Page (do not delete)
+extends@: default
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        content:
+          fields:
+            header.suggestions:
+              type: list
+              label: Popular pages shown on the search page
+              help: Shown when nobody has searched yet, or when a search finds nothing.
+              style: vertical
+              fields:
+                .label:
+                  type: text
+                  label: Label
+                .url:
+                  type: text
+                  label: Page route (e.g. /alcos)

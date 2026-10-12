@@ -63,7 +63,7 @@
 
 {% set graph = [
     org,
-    {'@type': 'WebSite', '@id': site_url ~ '/#website', 'url': site_url ~ '/', 'name': config.site.title, 'publisher': {'@id': org_id}, 'inLanguage': 'en'},
+    {'@type': 'WebSite', '@id': site_url ~ '/#website', 'url': site_url ~ '/', 'name': config.site.title, 'publisher': {'@id': org_id}, 'inLanguage': 'en', 'potentialAction': {'@type': 'SearchAction', 'target': {'@type': 'EntryPoint', 'urlTemplate': site_url ~ '/search?q={search_term_string}'}, 'query-input': 'required name=search_term_string'}},
     webpage
 ] %}
 {% if not page.home %}{% set graph = graph|merge([{'@type': 'BreadcrumbList', 'itemListElement': items}]) %}{% endif %}

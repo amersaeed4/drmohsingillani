@@ -5,6 +5,9 @@ routes:
 lead: Laparoscopic sleeve gastrectomy, the most commonly performed weight-loss surgery.
 metadata:
   description: 'Laparoscopic sleeve gastrectomy in Lahore: the most common bariatric surgery, removing 60-85% of the stomach to reduce hunger and food intake.'
+hero_image: placeholder-sleeve.svg
+hero_alt: ''
+card_image: placeholder-sleeve.svg
 ---
 
 **Laparoscopic Sleeve Gastrectomy**

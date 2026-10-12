@@ -5,6 +5,9 @@ routes:
 lead: The role of metabolic surgery in type-2 diabetes mellitus, with its complications and treatment options.
 metadata:
   description: 'Type-2 diabetes in Lahore: causes, complications, why to treat it, and how bariatric/metabolic surgery can help. Guidance from Prof. Dr. Mohsin Gillani.'
+hero_image: placeholder-diabetes.svg
+hero_alt: ''
+card_image: placeholder-diabetes.svg
 ---
 
 ## Role Of Metabolic Surgery In Type-2 Diabetes Mellitus
@@ -36,6 +39,8 @@ Women seem to be at a greater risk as do certain ethnic groups, such as [South A
 - Diabetic nonketotic, Hyperosmolar coma
 
 - Hypoglycemia
+
+![](placeholder-diabetes.svg)![](placeholder-general.svg)
 
 ## Why To Treat Diabetes Mellitus
 

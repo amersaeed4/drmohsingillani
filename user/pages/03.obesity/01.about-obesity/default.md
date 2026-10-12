@@ -6,6 +6,8 @@ lead: Obesity is a chronic and severe condition of overweight. Here is how it is
 metadata:
   description: What is obesity? Learn how BMI is measured, what morbid obesity means and its physical and psychological health effects. Prof. Dr. Mohsin Gillani, Lahore.
 card_image: New-Project-41.jpg
+hero_image: placeholder-obesity.svg
+hero_alt: ''
 ---
 
 Obesity is a chronical and severe condition of overweight. It can be caused by a number of elements. The international standard for measuring obesity is the BMI (Body Mass Index).

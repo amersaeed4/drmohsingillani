@@ -5,7 +5,7 @@
 {% for i in 1..4 %}
     {% if top.parent and not top.parent.root and top.parent.route != '/' %}{% set top = top.parent %}{% endif %}
 {% endfor %}
-{% if top != page or page.children.visible|length %}
+{% if top.children.visible|length and (top != page or page.children.visible|length) %}
 <aside class="sidenav" aria-label="In this section">
     <p class="sn-title">{{ top.title }}</p>
     {{ m.sidetree(top.children.visible, page) }}

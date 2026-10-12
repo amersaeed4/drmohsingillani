@@ -6,6 +6,8 @@ lead: A group of metabolic diseases characterised by raised blood glucose levels
 metadata:
   description: What is diabetes? Understand Type-1, Type-2, gestational diabetes and LADA, their causes, treatment and prevention. Prof. Dr. Mohsin Gillani, Lahore.
 card_image: New-Project-40.jpg
+hero_image: placeholder-diabetes.svg
+hero_alt: ''
 ---
 
 It is a group of metabolic diseases characterized by increased levels of glucose in the blood ( hyperglycemia ), resulting from defects in either or both of the following :
