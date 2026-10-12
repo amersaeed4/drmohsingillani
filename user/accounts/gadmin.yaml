@@ -13,3 +13,6 @@ modified: 1791794332
 avatar: {  }
 twofa_enabled: false
 twofa_secret: ''
+admin_next:
+  preferences:
+    pagesViewMode: tree
